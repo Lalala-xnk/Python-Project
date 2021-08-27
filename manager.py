@@ -138,7 +138,7 @@ class Login(Tk):
     def register(self, frame, *pwd):
         # pwd is a list containing password inputs
         if pwd[0].get() == pwd[1].get():
-            encode.password = hashlib.md5(pwd[0].get()).hexdigest()
+            encode.password = hashlib.md5(pwd[0].get().encode('utf-8')).hexdigest()
             # Saving password for future use.
             open(".pwd", "w").write(encode.password)
 
