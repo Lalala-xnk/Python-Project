@@ -45,7 +45,6 @@ class GetFrame(Frame):
 
     def del_func(self):
         self.service_list = get_service('securePasword.txt')
-        print(self.service_list)
 
         if self.service_list:
             self.lbl_service = Label(self, text='Please enter the service you want to delete: ')
