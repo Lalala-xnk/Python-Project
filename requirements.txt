@@ -1,2 +1,1 @@
-pycrypto==2.6.1
 pyperclip==1.8.2
