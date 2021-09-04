@@ -64,7 +64,7 @@ def addScreen(tk):
     # Create Entry Box To Designate username
     txt1_user_Name = Entry(window, width=20)
     txt1_user_Name.pack()
-    txt1_user_Name.focus()
+    # txt1_user_Name.focus()
 
 
     lbl_FPassword = Label(window, text="Enter your Password :")
@@ -74,7 +74,7 @@ def addScreen(tk):
     # Create Entry Box To Designate Password
     txt_FPassword = Entry(window, width=20, show="*") # hide the input password
     txt_FPassword.pack()
-    txt_FPassword.focus()
+    # txt_FPassword.focus()
 
 
     label1_RPassword = Label(window, text="Re-enter Password :")
@@ -83,7 +83,7 @@ def addScreen(tk):
     # Create Entry Box To Designate reentry Password
     txt_RPassword = Entry(window, width=20, show="*")
     txt_RPassword.pack()
-    txt_RPassword.focus()
+    # txt_RPassword.focus()
 
     def SavePassword():
         #check if customer input all the information
@@ -98,26 +98,35 @@ def addScreen(tk):
                 file = open("securePasword.txt", "a")
                 file.write(txt_website_Name.get() + ";|" + txt1_user_Name.get() + ";|" + encode(txt_FPassword.get()).decode('utf-8') + "\n")
                 file.close()
-                password_Save(window)
 
-                window.geometry('550x450')
-                window.resizable(height=None, width=None)
+                messagebox.showinfo('showinfo', 'Entry saved!')
+                window.destroy()
+                # txt_website_Name.focus()
+                # txt_website_Name.delete(0, 'end')
+                # txt1_user_Name.delete(0, 'end')
+                # txt_FPassword.delete(0, 'end')
+                # txt_RPassword.delete(0, 'end')
+
+                # password_Save(window)
+
+                # window.geometry('550x450')
+                # window.resizable(height=None, width=None)
 
                 #list out all the password stored in the txt file
-                lbl = Label(window, text="service name \t  Username \t Password", fg='red', font=("Helvetica", 12))
-                #lbl = Label(window, text="{}\t\t  {} \t\t {}".format("service", "Username", "Password"),font=("Helvetica", 12))
-                lbl.grid(row=1, column=1, padx=80)
-                count = 1
-                file = open("securePasword.txt", "r")
-                for i in file:
-                    count +=1
-                    data = i.split(";|")
-                    # list out all the saved data
-                    # print( decrypt(data[0], shift_update), "---", decrypt(data[1], shift_update), "---", decrypt(data[2], shift_update))
-                    lbl = Label(window, text="{}\t\t  {} \t\t {}"
-                                .format(data[0], data[1], decode(data[2])),
-                                fg='black', font=("Helvetica", 12))
-                    lbl.grid(row=int(count), column=1, padx=100)
+                # lbl = Label(window, text="service name \t  Username \t Password", fg='red', font=("Helvetica", 12))
+                # #lbl = Label(window, text="{}\t\t  {} \t\t {}".format("service", "Username", "Password"),font=("Helvetica", 12))
+                # lbl.grid(row=1, column=1, padx=80)
+                # count = 1
+                # file = open("securePasword.txt", "r")
+                # for i in file:
+                #     count +=1
+                #     data = i.split(";|")
+                #     # list out all the saved data
+                #     # print( decrypt(data[0], shift_update), "---", decrypt(data[1], shift_update), "---", decrypt(data[2], shift_update))
+                #     lbl = Label(window, text="{}\t\t  {} \t\t {}"
+                #                 .format(data[0], data[1], decode(data[2])),
+                #                 fg='black', font=("Helvetica", 12))
+                #     lbl.grid(row=int(count), column=1, padx=100)
 
 
             else:
