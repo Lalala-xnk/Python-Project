@@ -4,6 +4,7 @@ from tkinter import *
 from tkinter import ttk
 
 from add_func import decrypt, encrypt
+from encode_new import encode, decode
 
 LARGE_FONT = ("Verdana", 13)
 BUTTON_FONT = ("Batang", 13, "bold")
@@ -34,7 +35,7 @@ def get_service(path):
     for item in data_list:
         if item:
             tmp = item.split(';|')
-            service_list.append(decrypt(tmp[0], shift_update))
+            service_list.append(tmp[0])
     return service_list
 
 
@@ -73,7 +74,7 @@ class GetFrame(Frame):
                     lines = fl.readlines()
                     fl.seek(0)
                     for txt in lines:
-                        if txt[:len(service)] != encrypt(service, shift_update):
+                        if txt[:len(service)] != service:
                             fl.write(txt)
                     fl.truncate()
             else:

@@ -4,7 +4,8 @@ from tkinter import *
 from tkinter import ttk
 
 import pyperclip
-from add_func import decrypt, encrypt
+from add_func import decrypt
+from encode_new import encode, decode
 
 LARGE_FONT = ("Verdana", 13)
 BUTTON_FONT = ("Batang", 13, "bold")
@@ -73,10 +74,9 @@ class GetFrame(Frame):
         for item in data_list:
             if item:
                 tmp = item.split(';|')
-                pwd_list.append((decrypt(tmp[0], shift_update), decrypt(tmp[1], shift_update)))
+                pwd_list.append((tmp[0], tmp[1]))
                 PWD[tmp[0]] = tmp[2]
         return pwd_list
 
     def copy_pwd(self, *args):
-        pyperclip.copy(decrypt(PWD[encrypt(self.tree.item(self.tree.focus(), 'values')[0], shift_update)],
-                               shift_update))
+        pyperclip.copy(decode(PWD[self.tree.item(self.tree.focus(), 'values')[0]]))

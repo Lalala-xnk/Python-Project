@@ -5,6 +5,7 @@ shift_update = 2 #create global variable shift update
 
 
 from tkinter import messagebox #warming message
+from encode_new import encode, decode
 
 
 # window.title ("Group 9 Project: Password Manager")
@@ -95,9 +96,9 @@ def addScreen(tk):
                 print(txt_website_Name.get())
 
                 file = open("securePasword.txt", "a")
-                file.write(encrypt(txt_website_Name.get(), shift_update) + ";|" + encrypt(txt1_user_Name.get(), shift_update) + ";|" + encrypt(txt_FPassword.get(),shift_update) + "\n")
+                file.write(txt_website_Name.get() + ";|" + txt1_user_Name.get() + ";|" + encode(txt_FPassword.get()).decode('utf-8') + "\n")
                 file.close()
-                password_Save()
+                password_Save(window)
 
                 window.geometry('550x450')
                 window.resizable(height=None, width=None)
@@ -112,8 +113,10 @@ def addScreen(tk):
                     count +=1
                     data = i.split(";|")
                     # list out all the saved data
-                    print( decrypt(data[0], shift_update), "---", decrypt(data[1], shift_update), "---", decrypt(data[2], shift_update))
-                    lbl = Label(window, text="{}\t\t  {} \t\t {}".format(decrypt(data[0], shift_update),decrypt(data[1], shift_update),decrypt(data[2], shift_update) ), fg='black', font=("Helvetica", 12))
+                    # print( decrypt(data[0], shift_update), "---", decrypt(data[1], shift_update), "---", decrypt(data[2], shift_update))
+                    lbl = Label(window, text="{}\t\t  {} \t\t {}"
+                                .format(decode(data[0]), decode(data[1]), decode(data[2])),
+                                fg='black', font=("Helvetica", 12))
                     lbl.grid(row=int(count), column=1, padx=100)
 
 
@@ -136,9 +139,9 @@ def addScreen(tk):
     btn = Button(window, text="Save", command=SavePassword)
     btn.pack(pady=10)
 
-def password_Save():
+def password_Save(window):
     for widget in window.winfo_children():
-            widget.destroy()
+        widget.destroy()
     window.geometry("700x500")
 
 
