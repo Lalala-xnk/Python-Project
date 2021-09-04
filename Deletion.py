@@ -74,7 +74,7 @@ class GetFrame(Frame):
                     lines = fl.readlines()
                     fl.seek(0)
                     for txt in lines:
-                        if txt[:len(service)] != service:
+                        if txt.split(';|')[0] != service:
                             fl.write(txt)
                     fl.truncate()
             else:
