@@ -66,28 +66,31 @@ class GetFrame(Frame):
 
     def del_entry(self, *args):
         service = self.entry_service.get()
-        if service in self.service_list:
-            with open('securePasword.txt', 'r+') as fl:
-                lines = fl.readlines()
-                fl.seek(0)
-                for txt in lines:
-                    if txt[:len(service)] != encrypt(service, shift_update):
-                        fl.write(txt)
-                fl.truncate()
-            self.entry_service.destroy()
-            self.lbl_service.destroy()
-            self.del_bt.destroy()
-            succ_msg = 'Service ' + service + ' deleted'
-            label = Label(self, text=succ_msg, font=LARGE_FONT, bd=3, width=30)
-            label.pack(side='top', fill='x', pady=10)
-            ret_bt = ttk.Button(self, text='OK', command=self.master.destroy)
-            ret_bt.pack(pady=10)
+        flag = 0
+        if service:
+            if service in self.service_list:
+                with open('securePasword.txt', 'r+') as fl:
+                    lines = fl.readlines()
+                    fl.seek(0)
+                    for txt in lines:
+                        if txt[:len(service)] != encrypt(service, shift_update):
+                            fl.write(txt)
+                    fl.truncate()
+            else:
+                flag = 2
         else:
-            self.entry_service.destroy()
-            self.lbl_service.destroy()
-            self.del_bt.destroy()
-            err_msg = 'Service ' + service + ' does not exist'
-            label = Label(self, text=err_msg, font=LARGE_FONT, bd=3, width=30)
-            label.pack(side='top', fill='x', pady=10)
-            ret_bt = ttk.Button(self, text='OK', command=self.master.destroy)
-            ret_bt.pack(pady=10)
+            flag = 1
+
+        if flag == 0:
+            msg = 'Service ' + service + ' deleted'
+        elif flag == 1:
+            msg = 'Please enter service name'
+        else:
+            msg = 'Service ' + service + ' does not exist'
+        self.entry_service.destroy()
+        self.lbl_service.destroy()
+        self.del_bt.destroy()
+        label = Label(self, text=msg, font=LARGE_FONT, bd=3, width=30)
+        label.pack(side='top', fill='x', pady=10)
+        ret_bt = ttk.Button(self, text='OK', command=self.master.destroy)
+        ret_bt.pack(pady=10)
