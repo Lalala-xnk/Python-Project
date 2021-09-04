@@ -92,8 +92,8 @@ def addScreen(tk):
             #check whether password match
             if txt_FPassword.get() == txt_RPassword.get():
 
-                print("Right password")
-                print(txt_website_Name.get())
+                # print("Right password")
+                # print(txt_website_Name.get())
 
                 file = open("securePasword.txt", "a")
                 file.write(txt_website_Name.get() + ";|" + txt1_user_Name.get() + ";|" + encode(txt_FPassword.get()).decode('utf-8') + "\n")
@@ -115,7 +115,7 @@ def addScreen(tk):
                     # list out all the saved data
                     # print( decrypt(data[0], shift_update), "---", decrypt(data[1], shift_update), "---", decrypt(data[2], shift_update))
                     lbl = Label(window, text="{}\t\t  {} \t\t {}"
-                                .format(decode(data[0]), decode(data[1]), decode(data[2])),
+                                .format(data[0], data[1], decode(data[2])),
                                 fg='black', font=("Helvetica", 12))
                     lbl.grid(row=int(count), column=1, padx=100)
 
