@@ -80,7 +80,16 @@ class Login(Tk):
             kwargs['btn'].config(state=DISABLED)
             # adding buttons
             self.addConfigBtn(frame)
+            messagebox.showinfo('showinfo', 'New password set!')
+            # self.destroy()
+
             # self.addlistBtn(frame)
+            # msg = 'New password set'
+            # label = Label(self, text=msg, font=LARGE_FONT, bd=3, width=30)
+            # label.pack(side='top', fill='x', pady=10)
+            # ret_bt = Button(self, text='OK', command=self.master.destroy)
+            # ret_bt.pack(pady=10)
+
 
         elif chk == decrypt(password, shift_update):
             RIGHT_PASSWORD = True
