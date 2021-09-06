@@ -135,8 +135,10 @@ class Login(Tk):
         for i in range(3):
             f.append(Frame(login, padx=60, width=200, height=100))
             f[i].grid(row=3, column=i)
+            print(self.winfo_width())
+            print(self.winfo_height())
             img.append(PhotoImage(
-                file=btnList[i] + ".gif", width=70, height=90))
+                file=btnList[i] + ".gif", width=70, height=70))
             self.temp.append(img[i])
             Button(f[i], image=img[i], text=btnList[i],
                    command=btnCmdList[i]).grid(row=3)
