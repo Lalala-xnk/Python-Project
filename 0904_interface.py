@@ -66,9 +66,7 @@ class Login(Tk):
         #we save the login password in the login_pwd.txt
         pswdFile = open("login_pwd.txt", "r+")
         password = pswdFile.read()
-        print("line 62 :input_psd = {} pasword={}".format(chk, password))
-        print('pwd', len(decrypt(password, shift_update)))
-        print('chk', len(chk))
+        # print("line 62 :input_psd = {} pasword={}".format(chk, password))
         #if there isn't password in login_pwd.txt,we should save the input password as the register password in the file
         if len(password) == 0:
             print("line 65input_psd = {} pasword={}".format(chk,decrypt(password,shift_update)))
