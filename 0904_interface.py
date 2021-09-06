@@ -67,10 +67,12 @@ class Login(Tk):
         pswdFile = open("login_pwd.txt", "r+")
         password = pswdFile.read()
         print("line 62 :input_psd = {} pasword={}".format(chk, password))
+        print('pwd', len(decrypt(password, shift_update)))
+        print('chk', len(chk))
         #if there isn't password in login_pwd.txt,we should save the input password as the register password in the file
         if len(password) == 0:
             print("line 65input_psd = {} pasword={}".format(chk,decrypt(password,shift_update)))
-            pswdFile.write(encrypt(chk, shift_update))
+            pswdFile.write(encrypt(chk, shift_update) if len(chk) > 0 else encrypt('\n', shift_update))
             RIGHT_PASSWORD = True
             self.state['text'] = "Logged In"
             self.state['valid_user'] = True
@@ -91,7 +93,7 @@ class Login(Tk):
             # ret_bt.pack(pady=10)
 
 
-        elif chk == decrypt(password, shift_update):
+        elif chk == decrypt(password, shift_update) or (not chk and decrypt(password, shift_update) == '\n'):
             RIGHT_PASSWORD = True
             print("line 78 :pasword={}".format(decrypt(password, shift_update)))
             self.state['text'] = "Logged In"
