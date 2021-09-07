@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from tkinter import *
+from tkinter import messagebox
 from tkinter import ttk
 
 import pyperclip
@@ -93,3 +94,4 @@ class GetFrame(Frame):
     # func to decode and copy pwd
     def copy_pwd(self, *args):
         pyperclip.copy(decode(PWD[self.tree.item(self.tree.focus(), 'values')[0]]))
+        messagebox.showinfo('showinfo', 'Password copied!')
